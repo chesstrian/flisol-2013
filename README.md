@@ -1,4 +1,4 @@
-flisol2013
-==========
+Flisol 2013
+===========
 
-AMI and NodeJs Conference
+AMI and NodeJS Conference in Medellin
