@@ -1,0 +1,32 @@
+{
+  "name": "charla-ami-node",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Introducción a AMI y NodeJS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chesstrian/flisol-2013.git"
+  },
+  "dependencies": {
+    "express": "3.x",
+    "ejs": "*",
+    "asterisk-ami": "~0.0.8",
+    "now": "~0.8.1"
+  },
+  "keywords": [
+    "asterisk",
+    "manager",
+    "interface",
+    "nodejs"
+  ],
+  "author": {
+    "name": "Christian Gutierrez",
+    "email": "chesstrian@gmail.com"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}

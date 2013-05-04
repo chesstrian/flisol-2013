@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title><%= title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AMI y NodeJS">
+  <meta name="author" content="Christian Gutierrez">
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="img/favicon.png">
+  
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="page-header">
+				<h1>
+					Asterisk Manager Interface & NodeJS <small>Flisol Medellín 2013</small>
+				</h1>
+			</div>
+			<div class="hero-unit">
+				<p align="center">
+          <input type="button" class="btn btn-primary btn-large addagent" value="Add Agent »">
+          <input type="button" class="btn btn-warning btn-large removeagent" value="Remove Agent »">
+          <input type="button" class="btn btn-danger btn-large pause" value="Pause »">
+          <input type="button" class="btn btn-success btn-large resume" value="Resume »">
+				</p>
+			</div>
+      <div id="salida" class="hero-unit">
+      </div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="/nowjs/now.js"></script>
+<script type="text/javascript">
+  var salida = function (data) {
+    var html = '<div>' + (data instanceof Object ? JSON.stringify(data) : data) + '</div>';
+    var div = document.getElementById('salida');
+    div.innerHTML = html + '<br />' + div.innerHTML;
+  }
+
+  now.ready(function () {
+    salida('Conectado por medio de NowJS');
+  });
+
+  now.echoAsteriskData = function (data) {
+    salida(data);
+  }
+
+  $('.btn').click(function (e) {
+    e.preventDefault();
+    var object = {};
+
+    if ($(this).is('.addagent')) {
+      object = {
+        action: 'QueueAdd', 
+        queue: '501', interface: 'sip/2000', 
+        paused: false
+      };
+    } else if ($(this).is('.removeagent')) {
+      object = {
+        action: 'QueueRemove',
+        queue: '501',
+        interface: 'sip/2000'
+      };
+    } else if ($(this).is('.pauseagent')) {
+      object = {
+        action: 'QueuePause',
+        queue: '501',
+        interface: 'sip/2000',
+        paused: true
+      };
+    } else if ($(this).is('.unpauseagent')) {
+      object = {
+        action: 'QueuePause',
+        queue: '501', 
+        interface: 'sip/2000', 
+        paused: false
+      };
+    }
+
+    now.data2Asterisk(object);
+  });
+  // now.funcion();
+</script>
+
+</body>
+</html>
