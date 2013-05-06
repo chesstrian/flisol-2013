@@ -67,7 +67,8 @@
     if ($(this).is('.addagent')) {
       object = {
         action: 'QueueAdd', 
-        queue: '501', interface: 'sip/2000', 
+        queue: '501',
+        interface: 'sip/2000', 
         paused: false
       };
     } else if ($(this).is('.removeagent')) {
@@ -76,14 +77,14 @@
         queue: '501',
         interface: 'sip/2000'
       };
-    } else if ($(this).is('.pauseagent')) {
+    } else if ($(this).is('.pause')) {
       object = {
         action: 'QueuePause',
         queue: '501',
         interface: 'sip/2000',
         paused: true
       };
-    } else if ($(this).is('.unpauseagent')) {
+    } else if ($(this).is('.resume')) {
       object = {
         action: 'QueuePause',
         queue: '501', 
